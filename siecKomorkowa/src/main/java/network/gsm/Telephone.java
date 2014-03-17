@@ -1,10 +1,12 @@
 package network.gsm;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import network.gsm.exception.InvalidPhoneNumberException;
+import network.gsm.exception.UnknownReceiverException;
 
 public class Telephone {
 
@@ -16,14 +18,22 @@ public class Telephone {
 
 	private String number;
 
-	public void sendMessage(Message message) throws Exception {
+	
+	public Telephone(String number) throws InvalidPhoneNumberException {
+		super();
+		setNumber(number);
+	}
+
+	public Telephone(Network network, String number) throws InvalidPhoneNumberException {
+		super();
+		this.network = network;
+		setNumber(number);
+	}
+
+	public void sendMessage(Message message) throws UnknownReceiverException {
 
 		if(message.getSender() == null){
 			message.setSender(this.number);
-		}
-		
-		if(message.getReceiver() == null){
-			throw new Exception("Unknown receiver!");
 		}
 		
 		Message m = network.sendMessage(message);
@@ -56,7 +66,11 @@ public class Telephone {
 		return number;
 	}
 
-	public void setNumber(String number) {
+	public void setNumber(String number) throws InvalidPhoneNumberException {
+		
+		if(number.length() != 9)
+			throw new InvalidPhoneNumberException("Invalid phone number");
+		
 		this.number = number;
 	}
 

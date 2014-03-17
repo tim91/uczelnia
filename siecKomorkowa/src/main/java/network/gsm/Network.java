@@ -1,5 +1,7 @@
 package network.gsm;
 
+import network.gsm.exception.UnknownReceiverException;
+
 public abstract class Network {
 
 	public static enum Area {
@@ -48,7 +50,10 @@ public abstract class Network {
 	
 	protected abstract float calculateCost(Message m);
 	
-	public Message sendMessage(Message m) {
+	public Message sendMessage(Message m) throws UnknownReceiverException {
+		
+		if(m.getReceiver() == null)
+			throw new UnknownReceiverException("Unknown Receiver!");
 		
 		float cost = calculateCost(m);
 		

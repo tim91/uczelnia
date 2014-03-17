@@ -1,18 +1,19 @@
 package network.gsm;
 
 import network.gsm.Network.Area;
+import network.gsm.exception.InvalidPhoneNumberException;
 
 public class SMSMessage extends Message {
 
 	/*
 	 * Dlugosc sms'a
 	 */
-	private static final float smsSize = (float) 5.0;
+	private static final float smsSize = 5.0f;
 	
 	private String smsContent;
 	
-	public SMSMessage(String sender, String receiver, Area receiverArea,String smsContent) {
-		super(sender, receiver,receiverArea);
+	public SMSMessage(String receiver, Area receiverArea,String smsContent) throws InvalidPhoneNumberException {
+		super(receiver,receiverArea);
 		
 		this.smsContent = smsContent;
 	}

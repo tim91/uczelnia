@@ -1,6 +1,5 @@
 package network.gsm;
 
-import network.gsm.Network.Area;
 
 public class PolishNetwork extends Network {
 
