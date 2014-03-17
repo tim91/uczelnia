@@ -1,5 +1,7 @@
 package network.gsm;
 
+import java.util.Collection;
+
 import network.gsm.Network.Area;
 import network.gsm.exception.InvalidPhoneNumberException;
 import network.gsm.exception.UnknownReceiverException;
@@ -35,6 +37,8 @@ public class World
 			
 			htc.setNetwork(net);
 			
+			m = new SMSMessage("258654125", Area.PL_MAZOWSZE, "sdfsdfsdfs");
+			
 			htc.sendMessage(m);
 			
 			System.out.println("Cost : " + htc.getBillingCost());
@@ -44,6 +48,27 @@ public class World
 			htc.sendMessage(m);
 			
 			System.out.println("Cost : " + htc.getBillingCost());
+			
+			net = new FreeSMS(net, new Area[]{Area.PL_MAZOWSZE,Area.PL_POMORZE});
+			
+			htc.setNetwork(net);
+			
+			m = new SMSMessage("258654125", Area.PL_POMORZE, "sdfsdfsdfs");
+			
+			htc.sendMessage(m);
+			
+			System.out.println("Cost : " + htc.getBillingCost());
+			
+			System.out.println("----------------------");
+			System.out.println("History : \n");
+			
+			Collection<Message> msgs = htc.getBilling();
+			
+			for (Message message : msgs) {
+				System.out.println(message.getCost());
+			}
+			
+			System.out.println("Bill cost : " + htc.getBillingCost());
 			
 		} catch (InvalidPhoneNumberException e) {
 			// TODO Auto-generated catch block
