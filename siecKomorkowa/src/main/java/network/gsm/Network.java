@@ -1,6 +1,6 @@
 package network.gsm;
 
-import network.gsm.exception.UnknownReceiverException;
+import network.gsm.exception.InvalidMessageException;
 
 public abstract class Network {
 
@@ -13,6 +13,8 @@ public abstract class Network {
 	private float smsCost;
 	
 	private float callCost;
+	
+	private float dataTransferCost;
 	
 	private Area area;
 
@@ -48,12 +50,23 @@ public abstract class Network {
 		this.area = area;
 	}
 	
+	public float getDataTransferCost() {
+		return dataTransferCost;
+	}
+
+	public void setDataTransferCost(float dataTransferCost) {
+		this.dataTransferCost = dataTransferCost;
+	}
+
 	protected abstract float calculateCost(Message m);
 	
-	public Message sendMessage(Message m) throws UnknownReceiverException {
+	public Message sendMessage(Message m) throws InvalidMessageException {
+		
+		if(m == null)
+			throw new InvalidMessageException("Message object is null");
 		
 		if(m.getReceiver() == null)
-			throw new UnknownReceiverException("Unknown Receiver!");
+			throw new InvalidMessageException("Unknown Receiver!");
 		
 		float cost = calculateCost(m);
 		

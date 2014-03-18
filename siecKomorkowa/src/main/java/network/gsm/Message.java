@@ -1,6 +1,7 @@
 package network.gsm;
 
 import network.gsm.Network.Area;
+import network.gsm.exception.InvalidAreaException;
 import network.gsm.exception.InvalidPhoneNumberException;
 
 public abstract class Message {
@@ -11,7 +12,7 @@ public abstract class Message {
 	
 	private Area receiverArea;
 	
-	private float cost;
+	private float cost = -1;
 	
 	/*
 	 * Metoda zwraca liczbe jednostek, ktore podlegaja oplacie
@@ -19,9 +20,13 @@ public abstract class Message {
 	 */
 	public abstract float getUnits();
 	
-	public Message(String receiver, Area receiverArea) throws InvalidPhoneNumberException {
+	public Message(String receiver, Area receiverArea) throws InvalidPhoneNumberException, InvalidAreaException {
 		super();
 		setReceiver(receiver);
+		
+		if(receiverArea == null){
+			throw new InvalidAreaException("Receiver area is null");
+		}
 		this.receiverArea = receiverArea;
 	}
 
@@ -46,7 +51,7 @@ public abstract class Message {
 	}
 
 	public void setReceiver(String receiver) throws InvalidPhoneNumberException {
-		if(receiver.length() != 9)
+		if(receiver == null || receiver.length() != 9)
 			throw new InvalidPhoneNumberException("Invalid receiver phone number!");
 		
 		this.receiver = receiver;
