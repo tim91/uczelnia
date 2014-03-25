@@ -75,5 +75,4 @@ public abstract class Network {
 		return m;
 		
 	}
-	
 }
