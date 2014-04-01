@@ -75,4 +75,14 @@ public abstract class Network {
 		return m;
 		
 	}
+	
+	
+	public void invokeOperation(IOperation operation){
+		
+		operation.invokeOperation();
+		
+		System.out.println("Tutaj mozemy zrobic logowanie...");
+		
+	}
+	
 }

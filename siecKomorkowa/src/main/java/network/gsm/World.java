@@ -38,6 +38,7 @@ public class World
 			
 			htc.setNetwork(net);
 			
+			
 			m = new SMSMessage("258654125", Area.PL_MAZOWSZE, "sdfsdfsdfs");
 			
 			htc.sendMessage(m);

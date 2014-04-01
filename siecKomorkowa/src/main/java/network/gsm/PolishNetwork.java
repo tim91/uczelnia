@@ -43,6 +43,7 @@ public class PolishNetwork extends Network {
 			 */
 			return getDataTransferCost() * units;
 		}
+		
 		return -1;
 	}
 
