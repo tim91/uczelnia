@@ -12,7 +12,6 @@ public class PolishNetwork extends Network {
 	 * @param area area of this network
 	 */
 	public PolishNetwork(String name, float smsCost, float callCost, float dataTransferCost, Area area) {
-
 		super.setName(name);
 		super.setSmsCost(smsCost);
 		super.setCallCost(callCost);
