@@ -11,14 +11,14 @@ public abstract class ReportCreator implements ConnectionVistator {
 	
 	public final void buildReport(){
 	
-		generateReportForVoiceConnections();
-		generateReportForSMSConnection();
-		generateReportForInternetConnections();
+		generateReportPartForVoiceConnections();
+		generateReportPartForSMSConnection();
+		generateReportPartForInternetConnections();
 		
 	}
 	
-	public abstract void generateReportForVoiceConnections();
-	public abstract void generateReportForSMSConnection();
-	public abstract void generateReportForInternetConnections();
+	public abstract void generateReportPartForVoiceConnections();
+	public abstract void generateReportPartForSMSConnection();
+	public abstract void generateReportPartForInternetConnections();
 	
 }

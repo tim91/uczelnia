@@ -30,19 +30,19 @@ public class PDFReport extends ReportCreator {
 	}
 
 	@Override
-	public void generateReportForVoiceConnections() {
+	public void generateReportPartForVoiceConnections() {
 		// TODO Auto-generated method stub
 		historyConnectionManager.getVoiceConnectionHistory().accept(this);
 	}
 
 	@Override
-	public void generateReportForSMSConnection() {
+	public void generateReportPartForSMSConnection() {
 		// TODO Auto-generated method stub
 		historyConnectionManager.getSmsConnectionHistory().accept(this);
 	}
 
 	@Override
-	public void generateReportForInternetConnections() {
+	public void generateReportPartForInternetConnections() {
 		// TODO Auto-generated method stub
 		historyConnectionManager.getInternetConnectionHistory().accept(this);
 	}
