@@ -1,0 +1,44 @@
+input[type="text"]
+{
+	/*background-color: aqua;*/
+}
+
+/*.yui3-form
+{
+	display: block;
+}*/
+
+
+/*.yui3-form input[name="formulaVal"]
+{
+	display:block;
+}*/
+
+
+
+.yui3-text-field:nth-of-type(2n+0) {
+	float: left;
+	margin-right: 10px;
+}
+
+
+.yui3-form input
+{
+	display: block !important;
+}
+
+.yui3-submit-button
+{
+	float: left;
+}
+
+input[type="text"]
+{
+	background-color: #99ccff;
+	width: 150px;
+}
+
+input[name="formulaVal"]
+{
+	width: 310px;
+}
