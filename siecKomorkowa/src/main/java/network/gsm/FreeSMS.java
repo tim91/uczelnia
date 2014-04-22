@@ -16,14 +16,15 @@ public class FreeSMS extends Network {
 		
 		float cost = this.network.calculateCost(m);
 		
-		for (Area fa : this.freeArea) {
-			/*
-			 * Odbiorca jest w sieci do której mamy darmowe sms'y
-			 */
-			if(fa == m.getReceiverArea())
-				return 0;
+		if(m instanceof SMSMessage){
+			for (Area fa : this.freeArea) {
+				/*
+				 * Odbiorca jest w sieci do której mamy darmowe sms'y
+				 */
+				if(fa == m.getReceiverArea())
+					return 0;
+			}
 		}
-
 		return cost;
 	}
 

@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import network.gsm.exception.InvalidMessageException;
 import network.gsm.exception.InvalidPhoneNumberException;
-import network.gsm.exception.UnknownReceiverException;
 
 public class Telephone {
 
@@ -30,8 +30,11 @@ public class Telephone {
 		setNumber(number);
 	}
 
-	public void sendMessage(Message message) throws UnknownReceiverException {
+	public void sendMessage(Message message) throws InvalidMessageException {
 
+		if(message == null)
+			throw new InvalidMessageException("Message object is null");
+			
 		if(message.getSender() == null){
 			message.setSender(this.number);
 		}
@@ -68,7 +71,7 @@ public class Telephone {
 
 	public void setNumber(String number) throws InvalidPhoneNumberException {
 		
-		if(number.length() != 9)
+		if(number == null || number.length() != 9)
 			throw new InvalidPhoneNumberException("Invalid phone number");
 		
 		this.number = number;

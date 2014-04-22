@@ -3,8 +3,9 @@ package network.gsm;
 import java.util.Collection;
 
 import network.gsm.Network.Area;
+import network.gsm.exception.InvalidAreaException;
+import network.gsm.exception.InvalidMessageException;
 import network.gsm.exception.InvalidPhoneNumberException;
-import network.gsm.exception.UnknownReceiverException;
 
 /**
  * Hello world!
@@ -17,7 +18,7 @@ public class World
     	try {
 			Telephone htc = new Telephone("353453454");
 			
-			Network net = new PolishNetwork("WielkopolskaSiec", 0.5f, 0.4f, Area.PL_WIELKOPOLSKA);
+			Network net = new PolishNetwork("WielkopolskaSiec", 0.5f, 0.4f,0.05f, Area.PL_WIELKOPOLSKA);
 			
 			htc.setNetwork(net);
 			
@@ -36,6 +37,7 @@ public class World
 			net = new FreeSMS(net, Area.PL_MAZOWSZE);
 			
 			htc.setNetwork(net);
+			
 			
 			m = new SMSMessage("258654125", Area.PL_MAZOWSZE, "sdfsdfsdfs");
 			
@@ -59,6 +61,12 @@ public class World
 			
 			System.out.println("Cost : " + htc.getBillingCost());
 			
+			m = new CallMessage("258654125", Area.PL_POMORZE, 1,20);
+			
+			htc.sendMessage(m);
+			
+			System.out.println("Cost : " + htc.getBillingCost());
+			
 			System.out.println("----------------------");
 			System.out.println("History : \n");
 			
@@ -73,7 +81,10 @@ public class World
 		} catch (InvalidPhoneNumberException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (UnknownReceiverException e) {
+		}catch (InvalidMessageException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidAreaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
