@@ -1,17 +1,61 @@
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="../css/calculator.css"/>
-<link rel="stylesheet" type="text/css" href="../css/gallerycss-min.css"/>
-<script src="../js/yui-min.js"></script>
-<script src="../js/calculator.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/calculator.css" />
+<link rel="stylesheet" type="text/css" href="../css/gallerycss-min.css" />
+<script type="text/javascript" src="../js/yui-min.js"></script>
+<script type="text/javascript" src="../js/calc.js"></script>
+<script type="text/javascript" src="../js/combo.js"></script>
+<script type="text/javascript" src="../js/button.js"></script>
 <title>Kalkulator</title>
 </head>
 <html>
-<body>
-		<div>
-			<div name="form"></div>
-			<div name="graph"></div>
+<body class="yui3-skin-sam">
+	<div>
+		<div name="formDIV">
+			<form id="form_"></form>
+			<button id="myButton" class="yui3-button">Oblicz</button>
 		</div>
+		<div name="graph">
+				<canvas id="canvas" width="1000" height="500"></canvas>
+		</div>
+	</div>
+
+	 <!--  <form action="" id="fm1" name="fm1">
+		<fieldset>
+			<p class="aui-field">
+				<label class="aui-field-label" for="name2">Wzór z=f(x,y):</label> <input
+					type="text" name="pattern" id="pattern" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="xmaxfield">Xmax:</label> <input
+					type="text" name="xmax" id="xmaxfield" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="xminfield">Xmin:</label> <input
+					type="text" name="xmin" id="xminfield" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="ymaxfiled">Ymax:</label> <input
+					type="text" name="ymax" id="ymaxfiled" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="yminfield">Ymin:</label> <input
+					type="text" name="ymin" id="yminfield" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="zmaxfield">Zmax:</label> <input
+					type="text" name="zmax" id="zmaxfield" />
+			</p>
+			<p>
+				<label class="aui-field-label" for="zminfield">Zmin:</label> <input
+					type="text" name="zmin" id="zminfield" />
+			</p>
+
+			<p>
+				<input class="aui-button-input" id='subbtn' type="submit" value="Submit" />
+			</p>
+		</fieldset>
+	</form>-->
 </body>
 </html>

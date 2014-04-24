@@ -42,3 +42,8 @@ input[name="formulaVal"]
 {
 	width: 310px;
 }
+
+div[name="formDIV"]
+{
+	float:left;
+}
