@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: inf101319
-Build-Jdk: 1.7.0_51
+Built-By: Tomek
+Build-Jdk: 1.7.0_25
 Created-By: Maven Integration for Eclipse
 
