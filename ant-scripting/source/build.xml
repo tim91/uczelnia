@@ -129,20 +129,15 @@
 	
 	
 	<target name="groovy.zad3">
-		
-		<property name="lang.debug" value="PL,EN"/>
-		<property name="lang.release" value="DE,FR,RU"/>
-		
 		<groovy>
             class ShowLanguagesTask extends org.apache.tools.ant.Task{
-				String mode = "";
+				String mode;
                 def languages = ["PL":"Polish","EN":"English","DE":"German","FR":"French","RU":"Russian"];
                 public void execute() {
 					String messageTemplate = "Chosen languages:";
 					def tab = project.properties["lang."+mode].split(",");
 					tab.collect{
-					//trim, bo mialem problem ze spacja na poczatku wartosci it
-						messageTemplate += " " + languages[it.trim()];
+						messageTemplate += " " + languages[it];
 					}
 					println messageTemplate;
 				}
@@ -155,22 +150,25 @@
     </target>
 	
 	<target name="groovy.zad4">
-		
-		<property name="lang.debug" value="PL,EN"/>
-		<property name="lang.release" value="DE,FR,RU"/>
-		
 		<groovy>
+			import java.util.regex.Pattern
             class DumpPropertiesTask extends org.apache.tools.ant.Task{
-				String file= "";
-				String nameMath="";
-				String valueMatch="";
+				String file,nameMatch,valueMatch;
                 public void execute() {
-					if(file.length() == 0){
-						//wypisuje na ekran
+					def props = project.getProperties();
+					def list = [];
+					if(nameMatch != null){
+						def namePat = Pattern.compile(nameMatch)
+						props.each() { key, value -> if((key =~ namePat).find()) list.add(key + ' = ' + value) };
 					}
-					else{
-						
+					if(valueMatch != null){
+						def valuePat = Pattern.compile(valueMatch);
+						props.each() { key, value -> if((value =~ valuePat).find()) list.add(key + ' = ' + value) };
 					}
+					if(file != null &amp;&amp; file.length() > 0)
+						new File(file).withWriter { out -> list.each() { out.writeLine("${it}")}}
+					else
+						list.each() { println " ${it}" };
 				}
             }
             project.addTaskDefinition('dump', DumpPropertiesTask)
@@ -178,7 +176,7 @@
         
 		<dump nameMatch="lang"/>
         <dump nameMatch="release"/>
-        <dump valueMatch="PL" file="build/dump.properties"/>
+        <dump nameMatch="lang" valueMatch="PL" file="build/dump.properties"/>
     </target>
 	
 	
