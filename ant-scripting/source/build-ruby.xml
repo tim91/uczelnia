@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="install.ruby" name="ant-ruby">
+    <property name="jruby.jar.url" value="http://dist.codehaus.org/jruby/1.2.0/jruby-complete-1.2.0.jar"/>
+    <property name="bsf.jar.url" value="http://mirrors.ibiblio.org/pub/mirrors/maven/bsf/jars/bsf-2.3.0.jar"/>
+
+    <target name="install.ruby">
+        <mkdir dir="${user.home}/.ant/lib"/>
+        <get src="${bsf.jar.url}" dest="${user.home}/.ant/lib/bsf.jar" verbose="true" usetimestamp="true"/>
+        <get src="${jruby.jar.url}" dest="${user.home}/.ant/lib/jruby.jar" verbose="true" usetimestamp="true"/>
+    </target>
+
+    <macrodef name="ruby">
+       <text name="code"/>
+       <sequential>
+          <script language="ruby">@{code}</script>
+       </sequential>
+    </macrodef>
+
+    <target name="hello">
+        <ruby>print "Hello World!\n"</ruby>
+    </target>
+</project>

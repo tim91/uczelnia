@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="ant-scripting">
+    <property file="local.properties"/>
+    <property file="default.properties"/>
+
+    <taskdef resource="org/codehaus/groovy/antlib.xml">
+        <classpath path="lib/groovy-all-2.2.2.jar"/>
+    </taskdef>
+
+    <target name="hello">
+        <groovy>println "Hello World!"</groovy>
+    </target>
+
+    <target name="v.powers">
+        <groovy>(1..10).each{power -> println 2 ** power}</groovy>
+    </target>
+
+    <target name="h.powers">
+        <groovy>println ([1, 2, 3, 5, 7, 11].collect{2 ** it}.join(" | "))</groovy>
+    </target>
+
+    <target name="functions">
+        <groovy>
+            def switchCase(text) {
+                def letters = text.collect{ letterString ->
+                    def letter = letterString as Character
+                    if (!letter.isLetter()) {
+                        return
+                    }
+                    
+                    letter.isUpperCase() ? letter.toLowerCase() : letter.toUpperCase()
+                }
+                
+                String.valueOf(letters as char[])
+            }
+            
+            println switchCase("qWeRtY")
+        </groovy>
+    </target>
+
+    <target name="groovy.ant.properties">
+        <groovy>println (properties["test.property"] ? "Property is set" : "Property is not set")</groovy>
+
+        <property name="test.property" value="Qwerty"/>
+
+        <groovy>
+            println (properties["test.property"] ? "Property is set" : "Property  is not set")
+            println properties["test.property"]
+            
+            properties["test.property"] = "Dvorak"
+        </groovy>
+        
+        <echo message="${test.property}"/>
+    </target>
+
+    <target name="groovy.ant.call">
+        <groovy>
+            ant.echo "This is printed by the 'echo' task"
+        
+            // calling ant target by the 'antcall' task
+            ant.antcall(target : "init")
+            
+            // a more advanced example - with nested elements
+            ant.touch(file : "build/test.txt")
+            ant.delete(verbose : true) {
+                fileSet(dir : "build") {
+                    include(name: "**/*.txt")
+                }
+            }
+        </groovy>
+    </target>
+
+    <target name="groovy.ant.task">
+        <groovy>
+            class Rectangle {
+                int width = 5
+                int height = 5
+                String fill = '#'
+                
+                public void execute() { height.times{println fill * width} }
+            }
+            
+            project.addTaskDefinition('rect', Rectangle)
+        </groovy>
+
+        <echo>First rectangle:</echo>
+        <rect/>
+
+        <echo>Second rectangle:</echo>
+        <rect width="7" height="3" fill="%"/>
+    </target>
+
+    <target name="groovy.console">
+        <java classname="groovy.ui.Console" fork="true" spawn="true">
+            <classpath path="lib/groovy-all-1.6.0.jar"/>
+        </java>
+    </target>
+
+	
+	
+    <path id="ant-scripting.classpath">
+        <pathelement location="build"/>
+        <fileset dir="lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="init">
+        <mkdir dir="build"/>
+    </target>
+
+    <target name="clean" description="Cleans the project">
+        <delete dir="build"/>
+    </target>
+
+    <target name="build" depends="init">
+        <groovyc destdir="build">
+            <src path="src/groovy"/>
+            <classpath refid="ant-scripting.classpath"/>
+        </groovyc>
+    
+        <copy todir="build">
+            <fileset dir="src/groovy" excludes="**/*.groovy" />
+        </copy>
+    </target>
+	
+	
+	<!-- Zadania -->
+	
+	
+	<target name="groovy.zad3">
+		
+		<property name="lang.debug" value="PL,EN"/>
+		<property name="lang.release" value="DE,FR,RU"/>
+		
+		<groovy>
+            class ShowLanguagesTask extends org.apache.tools.ant.Task{
+				String mode = "";
+                def languages = ["PL":"Polish","EN":"English","DE":"German","FR":"French","RU":"Russian"];
+                public void execute() {
+					String messageTemplate = "Chosen languages:";
+					def tab = project.properties["lang."+mode].split(",");
+					tab.collect{
+					//trim, bo mialem problem ze spacja na poczatku wartosci it
+						messageTemplate += " " + languages[it.trim()];
+					}
+					println messageTemplate;
+				}
+            }
+            project.addTaskDefinition('showLanguages', ShowLanguagesTask)
+        </groovy>
+        
+		<showLanguages mode="debug"/>
+        <showLanguages mode="release"/>
+    </target>
+	
+	<target name="groovy.zad4">
+		
+		<property name="lang.debug" value="PL,EN"/>
+		<property name="lang.release" value="DE,FR,RU"/>
+		
+		<groovy>
+            class DumpPropertiesTask extends org.apache.tools.ant.Task{
+				String file= "";
+				String nameMath="";
+				String valueMatch="";
+                public void execute() {
+					if(file.length() == 0){
+						//wypisuje na ekran
+					}
+					else{
+						
+					}
+				}
+            }
+            project.addTaskDefinition('dump', DumpPropertiesTask)
+        </groovy>
+        
+		<dump nameMatch="lang"/>
+        <dump nameMatch="release"/>
+        <dump valueMatch="PL" file="build/dump.properties"/>
+    </target>
+	
+	
+</project>
