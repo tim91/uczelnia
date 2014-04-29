@@ -15,15 +15,9 @@ YUI({}).use("gallery-form", function (Y) {
 	            ]
 	    });
 	 
-	    
-	    form.subscribe('success', function (args) {
-	        alert ('Form submission successful');
-	    });
-	    form.subscribe('failure', function (args) {
-	        alert('Form submission failed' + args);
-	    });
 	 
-	    form.render('#form_');
+	form.render('#form_');
+	
     YUI().use('button', function(Y){
         
         // A push button widget
@@ -33,12 +27,49 @@ YUI({}).use("gallery-form", function (Y) {
         Y.one('#myButton').on('click',function(a){
         	var formula = form.getField('formulaVal').get('value');
         	
-        	var xmax = parseInt(form.getField('xmaxVal').get('value'));
-        	var xmin = parseInt(form.getField('xminVal').get('value'));
-        	var ymax = parseInt(form.getField('ymaxVal').get('value'));
-        	var ymin = parseInt(form.getField('yminVal').get('value'));
-        	var zmax = parseInt(form.getField('zmaxVal').get('value'));
-        	var zmin = parseInt(form.getField('zminVal').get('value'));
+        	var resp = validate(formula);
+        	
+        	if(formula == null || formula.length == 0){
+        		alert('Nie podano wzoru');
+        		return;
+        	}
+        	
+        	if(resp != true){
+        		alert('Podany wzór jest niepoprawny');
+        		return;
+        	}
+        	
+        		var xmax = parseInt(form.getField('xmaxVal').get('value'));
+        		if(isNaN(xmax)){
+        			alert('Wartość Xmax nie jest poprawna');
+        			return;
+        		}
+            	var xmin = parseInt(form.getField('xminVal').get('value'));
+            	if(isNaN(xmin)){
+        			alert('Wartość Xmin nie jest poprawna');
+        			return;
+        		}
+            	var ymax = parseInt(form.getField('ymaxVal').get('value'));
+            	if(isNaN(ymax)){
+        			alert('Wartość Ymax nie jest poprawna');
+        			return;
+        		}
+            	var ymin = parseInt(form.getField('yminVal').get('value'));
+            	if(isNaN(ymin)){
+        			alert('Wartość Ymin nie jest poprawna');
+        			return;
+        		}
+            	var zmax = parseInt(form.getField('zmaxVal').get('value'));
+            	if(isNaN(zmax)){
+        			alert('Wartość Zmax nie jest poprawna');
+        			return;
+        		}
+            	var zmin = parseInt(form.getField('zminVal').get('value'));
+            	if(isNaN(zmin)){
+        			alert('Wartość Zmin nie jest poprawna');
+        			return;
+        		}
+        	
         	
         	console.log(xmax + ' ' + xmin + ' ' + ymax + ' ' + ymin + ' ' + zmax + ' ' + zmin );
         	
@@ -67,6 +98,36 @@ YUI({}).use("gallery-form", function (Y) {
     
 });
 
+
+function validate(formula){
+	
+	for(var i=0;i<allowedWords.length;i++){
+		var w = allowedWords[i];
+		console.log("znak: " + w);
+		formula = formula.replace(w,'');
+		console.log(formula);
+	}
+	if(formula.length == 0)
+		return true;
+	
+	return false;
+	
+}
+
+var allowedWords = [new RegExp(/sin/g),
+                    new RegExp(/cos/g),
+                    new RegExp(/x/g),
+                    new RegExp(/y/g),
+                    new RegExp(/\(/g),
+                    new RegExp(/\)/g),
+                    new RegExp(/\+/g),
+                    new RegExp(/-/g),
+                    new RegExp(/\*/g),
+                    new RegExp(/\//g),
+                    new RegExp(/\ /g),
+                    new RegExp(/sqrt/g),
+                    new RegExp(/\d/g)
+                   ];
 
 function drawPlot(formula,params){
 	var canvas = document.getElementById('canvas');
