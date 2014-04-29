@@ -5,6 +5,7 @@
 
     <taskdef resource="org/codehaus/groovy/antlib.xml">
         <classpath path="lib/groovy-all-2.2.2.jar"/>
+    	<classpath path="lib/guava-15.0.jar"/>
     </taskdef>
 
     <target name="hello">
@@ -157,7 +158,7 @@
                 public void execute() {
 					def props = project.getProperties();
 					def list = [];
-					if(nameMatch != null){
+					if(nameMatch != null){ //te petle sa nieoptymalne, mozna to zrobic lepiej ale wtedy masz trzy warunki
 						def namePat = Pattern.compile(nameMatch)
 						props.each() { key, value -> if((key =~ namePat).find()) list.add(key + ' = ' + value) };
 					}
@@ -179,5 +180,58 @@
         <dump nameMatch="lang" valueMatch="PL" file="build/dump.properties"/>
     </target>
 	
+	<target name="groovy.zad5">
+		<groovy>
+			import org.apache.tools.ant.types.FileSet
+			import java.util.Date
+			import java.text.SimpleDateFormat
+			import groovy.xml.MarkupBuilder
+			import com.google.common.hash.HashCode
+			import com.google.common.hash.Hashing
+			import com.google.common.io.Files
+            class FileSetToMetaLink extends org.apache.tools.ant.Task{
+				FileSet filesets;
+				String file;
+				void addFileset(FileSet fileset) {
+			        filesets = fileset;
+			    }
+				public void execute() {
+					def header = project.properties["zad5.xmlHeader"]
+					def writer = new StringWriter()
+					def xml = new MarkupBuilder(writer)
+					def items = []
+					filesets.each() {
+							def file = new File("${it}")
+							println "${it}"
+							println "${file.length()}"
+							HashCode hc = Files.hash(file, Hashing.md5());
+							def el = [name:file.getName(),size:file.length(),identity:"Example",version:1.0,hash:hc.toString()]
+							items.add(el)
+					};
+					def sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
+					xml.metalink(xmlns: 'urn:ietf:params:xml:ns:metalink') {
+						  published(sdf.format(new Date()))
+						  files{
+								items.each{item->
+								      file(name:item.name){
+										size(item.size)
+										identity(item.identity)
+										version(item.version)
+										hash(type:'MD5',item.hash)
+								      }
+								    }
+						  }
+					}
+					def content =  writer.toString()
+					new File(file).withWriter { out -> out.writeLine(header); out.writeLine(content) }
+				}	
+	        }
+            project.addTaskDefinition('fileToMetaLink', FileSetToMetaLink)
+        </groovy>
+        
+		<fileToMetaLink file="build/metalink.xml">
+			<fileset dir="${ant.home}" includes="**/*.jar"/>
+		</fileToMetaLink>
+    </target>
 	
 </project>
