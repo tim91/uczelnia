@@ -14,6 +14,7 @@ public class Number {
 				+ ((operator == null) ? 0 : operator.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

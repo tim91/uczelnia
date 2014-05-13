@@ -10,4 +10,6 @@ public class InternetPackage implements InternetData {
 		this.costFor100k = costFor100k;
 	}
 	
+	public InternetPackage() {
+	}
 }

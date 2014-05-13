@@ -1,11 +1,14 @@
 package network.gsm.patterns;
 
-public class PlanOragne implements Plan {
+public class PlanOrange implements Plan {
 
 	private float smsCost = 0.2f;
 	private float callCost = 0.1f;
 	private float internetDataCost = 0.3f;
 	
+	public PlanOrange() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public float sendSms() {
 		// TODO Auto-generated method stub

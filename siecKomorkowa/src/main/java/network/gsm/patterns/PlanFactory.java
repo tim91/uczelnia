@@ -14,12 +14,14 @@ public class PlanFactory {
 	
 	static
 	{
-		planContainer.put(PLAN_ORANGE, new PlanOragne());
+		planContainer.put(PLAN_ORANGE, new PlanOrange());
 		planContainer.put(PLAN_PLUS, new PlanPlus());
 		
-		new PlanFreeSMS(new PlanOragne(), 500);
+		new PlanFreeSMS(new PlanOrange(), 500);
 	}
 	
+	public PlanFactory() {
+	}
 	
 	public void addPlan(String key, Plan plan){
 		planContainer.put(key, plan);

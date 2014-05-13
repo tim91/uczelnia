@@ -6,6 +6,12 @@ public class PlanPlus implements Plan {
 	private float callCost = 0.1f;
 	private float internetDataCost = 0.3f;
 	
+	public PlanPlus() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
 	public float sendSms() {
 		// TODO Auto-generated method stub
 		return smsCost;

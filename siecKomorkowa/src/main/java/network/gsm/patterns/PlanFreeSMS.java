@@ -1,10 +1,17 @@
 package network.gsm.patterns;
 
+import com.google.inject.Inject;
+
 public class PlanFreeSMS implements Plan {
 
 	private Plan plan = null;
 	private int freeSms = 0;
 	
+	public PlanFreeSMS() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Inject
 	public PlanFreeSMS(Plan plan, int freeSms) {
 		this.plan = plan;
 		this.freeSms = freeSms;
