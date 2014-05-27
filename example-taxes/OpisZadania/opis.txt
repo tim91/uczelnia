@@ -1,0 +1,5 @@
+1. Pe³ne pokrycie testami (wszystkie mozliwe konfiguracje wejscia).
+2. Separacja obs³ugi I/O od logiki biznesowej.
+3. Zachowanie zasady: SRP
+4. Unikanie d³ugich metod.
+5. Uzycie wzorców projektowych w celu zapewnienia ³atwego dodawania nowych typów umów
