@@ -200,10 +200,13 @@ function draw(context,formula,middlePoint,params){
                 alert(e.message);
                 return false;
             }
-            if(z>zmax || z< zmin) continue;
-            var g1=middleX-x+y;
-            var g2=middleY+x+y-z;
-            context.lineTo(g1, g2);
+			
+			if(z >= zmin && z <= zmax){
+				var g1=middleX-x+y;
+				var g2=middleY+x+y-z;
+				context.lineTo(g1, g2);
+			}
+            
         }
         context.stroke();
     }
@@ -220,10 +223,11 @@ function draw(context,formula,middlePoint,params){
                 alert(e.message);
                 return false;
             }
-            if(z>zmax || z< zmin) continue;
-            var g1=middleX-x+y;
-            var g2=middleY+x+y-z;
-            context.lineTo(g1, g2);
+			if(z >= zmin && z <= zmax){
+				var g1=middleX-x+y;
+				var g2=middleY+x+y-z;
+				context.lineTo(g1, g2);
+			}
         }
         context.stroke();
     }
