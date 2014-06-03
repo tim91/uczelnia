@@ -1,0 +1,5 @@
+Refaktoryzacja tak aby:
+Logowanie operacji
+Obs³uga b³êdów
+Czarna lista klientów
+By³y realizowane przez osobne aspekty (w module biznesowym nie moga znalezc sie jawne odwolania)
