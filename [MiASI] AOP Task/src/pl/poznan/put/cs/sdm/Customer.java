@@ -13,6 +13,7 @@ public class Customer {
 	};
 
 	public void addRental(Rental arg) {
+//		System.out.println("dodaje rental: " + arg);
 		if (arg == null) {
 			throw new NullPointerException();
 		}

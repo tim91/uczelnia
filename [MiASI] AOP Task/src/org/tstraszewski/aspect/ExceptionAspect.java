@@ -7,9 +7,9 @@ import org.aspectj.lang.annotation.Aspect;
 @Aspect
 public class ExceptionAspect {
 
-	@AfterThrowing("execution(* pl.poznan.put.cs.sdm.Customer.*(..))")
+	@AfterThrowing("execution(* pl.poznan.put.cs.sdm*.*())")
 	public void catchException(JoinPoint jp){
 		
-		System.out.println("----\nWyj¹tek: " + jp.getSourceLocation());
+		System.out.println("----\nWyjï¿½tek: " + jp.getSourceLocation());
 	}
 }

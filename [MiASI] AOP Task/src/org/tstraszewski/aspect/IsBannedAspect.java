@@ -18,9 +18,8 @@ public class IsBannedAspect {
 		
 		Customer c = (Customer)jp.getTarget();
 		boolean banned = cbl.isCustomerBanned(c);
-		System.out.println("\t\t\t" + c + " banned: " + banned);
-		if(banned){
-		}else{
+//		System.out.println("\t\t\t" + c + " banned: " + banned);
+		if(!banned){
 			try {
 				pjp.proceed();
 			} catch (Throwable e) {
