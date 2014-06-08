@@ -111,12 +111,12 @@ public class TaxCalculator {
 					+ df00.format(s_rentowa));
 			outPut.add("SkĹ‚adka na ubezpieczenie chorobowe  "
 					+ df00.format(u_chorobowe));
-			System.out
-					.println("Podstawa wymiaru skĹ‚adki na ubezpieczenie zdrowotne: "
+			outPut.add("Podstawa wymiaru skĹ‚adki na ubezpieczenie zdrowotne: "
 							+ oPodstawa);
 			obliczUbezpieczenia(oPodstawa);
 			outPut.add("SkĹ‚adka na ubezpieczenie zdrowotne: 9% = "
 					+ df00.format(s_zdrow1) + " 7,75% = " + df00.format(s_zdrow2));
+			//////////////////////////////////////////////////////
 			kwotaZmiejsz = 0;
 			kosztyUzyskania = (oPodstawa * 20) / 100;
 			outPut.add("Koszty uzyskania przychodu (staĹ‚e) "
@@ -139,8 +139,7 @@ public class TaxCalculator {
 			double wynagrodzenie = podstawa
 					- ((s_emerytalna + s_rentowa + u_chorobowe) + s_zdrow1 + zaliczkaUS0);
 			outPut.add("\n");
-			System.out
-					.println("Pracownik otrzyma wynagrodzenie netto w wysokoĹ›ci = "
+			outPut.add("Pracownik otrzyma wynagrodzenie netto w wysokoĹ›ci = "
 							+ df00.format(wynagrodzenie));
 			
 		} else {
