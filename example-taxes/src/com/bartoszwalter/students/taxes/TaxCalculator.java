@@ -77,6 +77,7 @@ public class TaxCalculator {
 			obliczUbezpieczenia(oPodstawa);
 			outPut.add("SkĹ‚adka na ubezpieczenie zdrowotne: 9% = "
 					+ df00.format(s_zdrow1) + " 7,75% = " + df00.format(s_zdrow2));
+//////////////////////////////////////////////////////
 			outPut.add( "Koszty uzyskania przychodu w staĹ‚ej wysokoĹ›ci "
 					+ kosztyUzyskania);
 			double podstawaOpodat = oPodstawa - kosztyUzyskania;

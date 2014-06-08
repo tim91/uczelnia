@@ -14,4 +14,11 @@ public class EmploymentContract extends BaseContract{
 		cv.visit(this);
 	}
 
+
+	@Override
+	public double getPodatekPotracony() {
+		// TODO Auto-generated method stub
+		return getZaliczkaNaPod() - TaxConstatns.kwotaZmiejsz;
+	}
+
 }

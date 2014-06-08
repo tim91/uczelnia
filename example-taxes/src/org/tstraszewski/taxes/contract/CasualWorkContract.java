@@ -14,4 +14,11 @@ public class CasualWorkContract extends BaseContract{
 		cv.visit(this);
 	}
 
+
+	@Override
+	public double getPodatekPotracony() {
+		// TODO Auto-generated method stub
+		return getZaliczkaNaPod();
+	}
+
 }

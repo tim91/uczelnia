@@ -1,13 +1,21 @@
 package org.tstraszewski.taxes.report;
 
 import org.tstraszewski.taxes.contract.BaseContract;
+import org.tstraszewski.taxes.report.writer.ReportWriter;
 
+/**
+ * Wzorzec template
+ * @author TOMEK
+ *
+ */
 public abstract class TaxReportTemplate implements ContractVisitor {
 
 	protected BaseContract contract = null;
+	protected ReportWriter reportWriter;
 	
-	public TaxReportTemplate(BaseContract c){
+	public TaxReportTemplate(BaseContract c,ReportWriter rw){
 		contract = c;
+		reportWriter = rw;
 	}
 	
 	public void setContract(BaseContract contract) {
@@ -15,22 +23,9 @@ public abstract class TaxReportTemplate implements ContractVisitor {
 	}
 
 	public final void createReport(){
-		
-//		outPut.add("UMOWA-ZLECENIE");
-//		outPut.add("Podstawa wymiaru skĹ‚adek " + podstawa);
-//		double oPodstawa = obliczonaPodstawa(podstawa);
-//		outPut.add("SkĹ‚adka na ubezpieczenie emerytalne "
-//				+ df00.format(s_emerytalna));
-//		outPut.add("SkĹ‚adka na ubezpieczenie rentowe    "
-//				+ df00.format(s_rentowa));
-//		outPut.add("SkĹ‚adka na ubezpieczenie chorobowe  "
-//				+ df00.format(u_chorobowe));
-//		outPut.add("Podstawa wymiaru skĹ‚adki na ubezpieczenie zdrowotne: "
-//						+ oPodstawa);
-//		obliczUbezpieczenia(oPodstawa);
-//		outPut.add("SkĹ‚adka na ubezpieczenie zdrowotne: 9% = ";
 		generateHeader();
 		generateMainPart();
+		//tutaj moglibysmy miec wiecej metod
 	}
 	
 	
