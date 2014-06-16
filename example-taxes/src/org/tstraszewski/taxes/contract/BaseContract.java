@@ -9,55 +9,59 @@ public abstract class BaseContract implements Reportable {
 	
 	private double podstawa = 0;
 	
-	private double s_emerytalna = (1 * 9.76) / 100;
-	private double s_rentowa = (1 * 1.5) / 100;
-	private double u_chorobowe = (1 * 2.45) / 100;
+	protected double s_emerytalna = 9.76 / 100.0;
+	protected double s_rentowa = 1.5 / 100.0;
+	protected double u_chorobowe = 2.45 / 100.0;
+	protected double zaliczkaNaPod = 18.0 / 100.0;
+	protected double s_zdrow1 = 9.0 / 100.0;
+	protected double s_zdrow2 = 7.75 / 100.0;
+	protected double kwotaZmiejsz = 46.33;
+//	protected double kosztyUzyskania = 111.25;
 	
-	private  double s_zdrow1 = (1 * 9) / 100;
-	private  double s_zdrow2 = (1 * 7.75) / 100;
-	
-	private double kosztyUzyskania = (1*20)/100;
+//	protected double kosztyUzyskania = 20.0 / 100.0;
 	
 	public void setPodstawa(double podstawa) {
 		this.podstawa = podstawa;
 	}
 	
 	public double getS_emerytalna() {
-		return s_emerytalna *= podstawa;
+		return s_emerytalna * podstawa;
 	}
 
 
 	public double getS_rentowa() {
-		return s_rentowa *= podstawa;
+		return s_rentowa * podstawa;
 	}
 
 
 	public double getU_chorobowe() {
-		return u_chorobowe *= podstawa;
+		return u_chorobowe * podstawa;
 	}
 	
-	public double getKosztyUzyskania() {
-		return getObliczonaPodstawa() * kosztyUzyskania;
-	}
+	public abstract double getKosztyUzyskania();
 
 	public double getPodstawa() {
 		return podstawa;
 	}
 
 	public double getS_zdrow1() {
-		return s_zdrow1 *= podstawa;
+		return s_zdrow1 * getObliczonaPodstawa();
 	}
 
 	public double getS_zdrow2() {
-		return s_zdrow2 *= podstawa;
+		return s_zdrow2 * getObliczonaPodstawa();
 	}
 
 	public double getZaliczkaNaPod() {
-		return (getPodstawaOpodatkowana0() *18 ) /100;
+		return (getPodstawaOpodatkowana0()*18) / 100;
+	}
+
+	public double getKwotaZmiejsz() {
+		return kwotaZmiejsz;
 	}
 
 	public double getZaliczkaUS() {
-		return getZaliczkaNaPod() - getS_zdrow2() - TaxConstatns.kwotaZmiejsz;
+		return getZaliczkaNaPod() - getS_zdrow2() - kwotaZmiejsz;
 	}
 	
 	public double getZaliczkaUS0() {

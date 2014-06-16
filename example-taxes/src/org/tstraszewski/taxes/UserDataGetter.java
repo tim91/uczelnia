@@ -1,4 +1,4 @@
-package com.bartoszwalter.students.taxes;
+package org.tstraszewski.taxes;
 
 import java.io.IOException;
 

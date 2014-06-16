@@ -10,6 +10,12 @@ import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.tstraszewski.taxes.contract.BaseContract;
+import org.tstraszewski.taxes.contract.ContractFactory;
+import org.tstraszewski.taxes.contract.ContractFactoryImpl;
+import org.tstraszewski.taxes.report.StandardTaxReport;
+import org.tstraszewski.taxes.report.TaxReportTemplate;
+import org.tstraszewski.taxes.report.writer.ArrayListOutputWriter;
 
 import com.bartoszwalter.students.taxes.TaxCalculator;
 
@@ -72,11 +78,21 @@ public class TaxCalculatorTest {
 	}
 	
 	public void paramterizedTest(double kwota, char typ){
-		
+		System.out.println(kwota + " " + typ);
 		String k = ""+kwota+typ;
 		List<String> goodRes = goodResults.get(k);
 		
-		List<String> myRes = TaxCalculator.getArrayWithResults(kwota, typ);
+//		List<String> myRes = TaxCalculator.getArrayWithResults(kwota, typ);
+		ContractFactory cf = new ContractFactoryImpl();
+		BaseContract bc = cf.createContract(typ);
+		if(bc != null)
+			bc.setPodstawa(kwota);
+		
+		ArrayListOutputWriter wr = new ArrayListOutputWriter();
+		TaxReportTemplate trt = new StandardTaxReport(bc, wr);
+		trt.createReport();
+		
+		List<String> myRes = wr.getResult();
 		
 		if(goodRes.size() != myRes.size()){
 			Assert.assertEquals(true, false);
@@ -88,8 +104,8 @@ public class TaxCalculatorTest {
 			for(int i = 0 ; i < len; i++){
 				String good = goodRes.get(i);
 				String my = myRes.get(i);
-//				System.out.println("GOOD: " + good);
-//				System.out.println("MY: " + my);
+				System.out.println("GOOD: " + good);
+				System.out.println("MY: " + my);
 				Assert.assertTrue(good.equals(my));
 			}
 			

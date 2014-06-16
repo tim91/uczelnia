@@ -23,14 +23,19 @@ public abstract class TaxReportTemplate implements ContractVisitor {
 	}
 
 	public final void createReport(){
-		generateHeader();
-		generateMainPart();
-		//tutaj moglibysmy miec wiecej metod
+		if(this.contract != null){
+			generateHeader();
+			generateMainPart();
+			//tutaj moglibysmy miec wiecej metod
+		}else{
+			this.reportWriter.write("Nieznany typ umowy!");
+		}
+		
 	}
 	
 	
 	public void generateHeader(){
-		System.out.println(this.contract.getContractName());
+		this.reportWriter.write(this.contract.getContractName());
 	}
 	
 	public abstract void generateMainPart();

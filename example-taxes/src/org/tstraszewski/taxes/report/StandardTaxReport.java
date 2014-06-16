@@ -10,8 +10,6 @@ import org.tstraszewski.taxes.report.writer.StandardConsoleOutputWriter;
 
 public class StandardTaxReport extends TaxReportTemplate{
 
-	
-	
 	public StandardTaxReport(BaseContract c,ReportWriter rw) {
 		super(c,rw);
 	}
@@ -22,9 +20,10 @@ public class StandardTaxReport extends TaxReportTemplate{
 		generateFirstPart(ec);
 		
 		reportWriter.write("Koszty uzyskania przychodu w staĹ‚ej wysokoĹ›ci " + ec.getKosztyUzyskania());
+//		generateSecondPart(ec);
 		reportWriter.write("Podstawa opodatkowania " + ec.getPodstawaOpodatkowana() + " zaokrÄ…glona " + Utils.formatWithZeroPostions(ec.getPodstawaOpodatkowana0()));
 		reportWriter.write("Zaliczka na podatek dochodowy 18 % = " + ec.getZaliczkaNaPod());
-		reportWriter.write("Kwota wolna od podatku = " + TaxConstatns.kwotaZmiejsz);
+		reportWriter.write("Kwota wolna od podatku = " + ec.getKwotaZmiejsz());
 		reportWriter.write("Podatek potrÄ…cony = " + Utils.formatWithTwoPostions(ec.getPodatekPotracony()));
 		reportWriter.write("Zaliczka do urzÄ™du skarbowego = " + Utils.formatWithTwoPostions(ec.getZaliczkaUS()) + 
 				" po zaokrÄ…gleniu = " + Utils.formatWithZeroPostions(ec.getZaliczkaUS0()));
@@ -37,6 +36,15 @@ public class StandardTaxReport extends TaxReportTemplate{
 		//wykorzystuje ta metode bo ta czesc jest taka sama
 		generateFirstPart(cc);
 		//TODO dalsza czesc raportu dla umowy zlecenie
+		reportWriter.write("Koszty uzyskania przychodu (staĹ‚e) " + cc.getKosztyUzyskania());
+//		generateSecondPart(cc);
+		reportWriter.write("Podstawa opodatkowania " + cc.getPodstawaOpodatkowana() + " zaokrÄ…glona " + Utils.formatWithZeroPostions(cc.getPodstawaOpodatkowana0()));
+		reportWriter.write("Zaliczka na podatek dochodowy 18 % = " + cc.getZaliczkaNaPod());
+		reportWriter.write("Podatek potrÄ…cony = " + Utils.formatWithTwoPostions(cc.getPodatekPotracony()));
+		reportWriter.write("Zaliczka do urzÄ™du skarbowego = " + Utils.formatWithTwoPostions(cc.getZaliczkaUS()) + 
+				" po zaokrÄ…gleniu = " + Utils.formatWithZeroPostions(cc.getZaliczkaUS0()));
+		reportWriter.write("\n");
+		reportWriter.write("Pracownik otrzyma wynagrodzenie netto w wysokoĹ›ci = " + Utils.formatWithTwoPostions(cc.getWynagordzenie()));
 	}
 	
 	private void generateFirstPart(BaseContract ec){
@@ -48,6 +56,17 @@ public class StandardTaxReport extends TaxReportTemplate{
 		reportWriter.write("SkĹ‚adka na ubezpieczenie zdrowotne: 9% = " + Utils.formatWithTwoPostions(ec.getS_zdrow1()) + " 7,75% = " + 
 				Utils.formatWithTwoPostions(ec.getS_zdrow2()));
 	}
+	
+//	private void generateSecondPart(BaseContract ec){
+//		reportWriter.write("Podstawa opodatkowania " + ec.getPodstawaOpodatkowana() + " zaokrÄ…glona " + Utils.formatWithZeroPostions(ec.getPodstawaOpodatkowana0()));
+//		reportWriter.write("Zaliczka na podatek dochodowy 18 % = " + ec.getZaliczkaNaPod());
+//		reportWriter.write("Kwota wolna od podatku = " + TaxConstatns.kwotaZmiejsz);
+//		reportWriter.write("Podatek potrÄ…cony = " + Utils.formatWithTwoPostions(ec.getPodatekPotracony()));
+//		reportWriter.write("Zaliczka do urzÄ™du skarbowego = " + Utils.formatWithTwoPostions(ec.getZaliczkaUS()) + 
+//				" po zaokrÄ…gleniu = " + Utils.formatWithZeroPostions(ec.getZaliczkaUS0()));
+//		reportWriter.write("\n");
+//		reportWriter.write("Pracownik otrzyma wynagrodzenie netto w wysokoĹ›ci = " + Utils.formatWithTwoPostions(ec.getWynagordzenie()));
+//	}
 
 	
 
