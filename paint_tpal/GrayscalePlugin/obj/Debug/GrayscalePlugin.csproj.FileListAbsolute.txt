@@ -1,0 +1,6 @@
+C:\Users\Tomek\git\uczelnia\paint_tpal\GrayscalePlugin\bin\Debug\GrayscalePlugin.dll
+C:\Users\Tomek\git\uczelnia\paint_tpal\GrayscalePlugin\bin\Debug\GrayscalePlugin.pdb
+C:\Users\Tomek\git\uczelnia\paint_tpal\GrayscalePlugin\bin\Debug\PluginInterface.dll
+C:\Users\Tomek\git\uczelnia\paint_tpal\GrayscalePlugin\bin\Debug\PluginInterface.pdb
+C:\Users\Tomek\git\uczelnia\paint_tpal\GrayscalePlugin\obj\Debug\GrayscalePlugin.dll
+C:\Users\Tomek\git\uczelnia\paint_tpal\GrayscalePlugin\obj\Debug\GrayscalePlugin.pdb

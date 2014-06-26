@@ -1,1 +1,12 @@
 C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\bin\Debug\paint_tpal.exe.config
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\bin\Debug\paint_tpal.exe
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\bin\Debug\paint_tpal.pdb
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\bin\Debug\GrayscalePlugin.dll
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\bin\Debug\PluginInterface.dll
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\bin\Debug\GrayscalePlugin.pdb
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\bin\Debug\PluginInterface.pdb
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\obj\Debug\paint_tpal.Paint.resources
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\obj\Debug\paint_tpal.Properties.Resources.resources
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\obj\Debug\paint_tpal.csproj.GenerateResource.Cache
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\obj\Debug\paint_tpal.exe
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\obj\Debug\paint_tpal.pdb
