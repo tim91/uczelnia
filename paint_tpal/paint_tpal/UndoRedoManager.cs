@@ -12,24 +12,28 @@ namespace paint_tpal
         private Stack<ICommand> undoStack = new Stack<ICommand>();
         private Stack<ICommand> redoStack = new Stack<ICommand>();
 
-        public void Redo()
+        public Bitmap Redo()
         {
             if (redoStack.Count != 0)
             {
                ICommand command = redoStack.Pop();
-               command.Execute();
+               Bitmap mm = command.Execute();
                undoStack.Push(command);
+               return mm;
             }
+            return null;
         }
 
-        public void Undo()
+        public Bitmap Undo()
         {
            if (undoStack.Count != 0)
            {
               ICommand command = undoStack.Pop();
-              command.Undo();
+              Bitmap mm = command.Undo();
               redoStack.Push(command);
+              return mm;
            }
+           return null;
         }
 
         public void registerExecutedCommand(ICommand com)
@@ -37,12 +41,6 @@ namespace paint_tpal
             undoStack.Push(com);
             //nie ma wiecej operacji w przod na tej sciezce
             redoStack.Clear();
-        }
-
-        public void clearHistory()
-        {
-            this.undoStack.Clear();
-            this.redoStack.Clear();
         }
     }
 }

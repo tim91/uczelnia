@@ -10,3 +10,4 @@ C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\obj\Debug\paint_tpal.Propertie
 C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\obj\Debug\paint_tpal.csproj.GenerateResource.Cache
 C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\obj\Debug\paint_tpal.exe
 C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\obj\Debug\paint_tpal.pdb
+C:\Users\Tomek\git\uczelnia\paint_tpal\paint_tpal\obj\Debug\paint_tpal.csprojResolveAssemblyReference.cache

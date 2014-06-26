@@ -21,17 +21,21 @@ namespace paint_tpal
             this.bitMap = bm;
         }
 
-        public void Execute()
+        public Bitmap Execute()
         {
             this.bforeTransaformation = (Bitmap)this.bitMap.Clone();
-            displayImage(this.plugin.transaform(bitMap));
+            this.bitMap = this.plugin.transaform(this.bitMap);
+            this.bitMap = this.plugin.transaform(this.bitMap);
+            displayImage(this.bitMap);
+            return this.bitMap;
         }
 
-        public void Undo()
+        public Bitmap Undo()
         {
             this.bitMap = this.bforeTransaformation;
+            Console.WriteLine(this.bitMap);
             displayImage(this.bforeTransaformation);
-            
+            return this.bitMap;
             //this.bforeTransaformation = null;
         }
     }

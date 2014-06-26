@@ -20,18 +20,20 @@ namespace paint_tpal
             this.bitMap = map;
         }
 
-        public void Execute()
+        public Bitmap Execute()
         {
             this.bforeTransaformation = (Bitmap)this.bitMap.Clone();
             this.bitMap = (Bitmap)Bitmap.FromFile(this.imagePath);
             displayImage(this.bitMap);
+            return this.bitMap;
         }
 
-        public void Undo()
+        public Bitmap Undo()
         {
             this.bitMap = this.bforeTransaformation;
+            Console.WriteLine(this.bitMap);
             displayImage(this.bitMap);
-            //this.bforeTransaformation = null;
+            return this.bitMap;
         }
     }
 }

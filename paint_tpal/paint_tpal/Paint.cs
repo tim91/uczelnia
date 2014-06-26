@@ -128,12 +128,20 @@ namespace paint_tpal
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.undoRedoManager.Undo();
+            Bitmap res = this.undoRedoManager.Undo();
+            if (res != null)
+            {
+                this.mainBitMap = res;
+            }
         }
 
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.undoRedoManager.Redo();
+            Bitmap res = this.undoRedoManager.Redo();
+            if (res != null)
+            {
+                this.mainBitMap = res;
+            }
         }
 
 
